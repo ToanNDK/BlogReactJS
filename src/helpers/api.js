@@ -36,9 +36,7 @@ export default function requestApi(endpoint , method , body = [], responseType='
                     console.log("Call refresh token api");
                     const result = await instance.post(`${process.env.REACT_APP_API_URL}/auth/refresh-token`,{
                         refresh_token: localStorage.getItem('refresh_token'),
-                        
-                    
-                    
+
                     })
                     
                     const {access_token,refresh_token} = result.data;

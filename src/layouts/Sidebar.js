@@ -31,7 +31,7 @@ const Sidebar = () => {
                         </a>
                         <div className="collapse" id="collapsePost" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav className="sb-sidenav-menu-nested nav">
-                                <Link to='/posts' className='nav-link'>Add Post</Link>
+                                <Link to='/post/add' className='nav-link'>Add Post</Link>
                                 <Link to='/posts' className='nav-link'>List Posts</Link>
                             </nav>
                         </div>

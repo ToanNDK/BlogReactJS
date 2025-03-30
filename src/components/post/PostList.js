@@ -30,9 +30,10 @@ const PostList = () => {
             element: row => row.title
         },
         {
-            name: "Description",
-            element: row => row.description
+            name: "Summary",
+            element: row => row.summary
         },
+        
         {
             name: "Status",
             element: row => row.status == 1 ? "Active" : "Inactive"
@@ -68,8 +69,8 @@ const PostList = () => {
             name: "Actions",
             element: row => (
                 <>
-                    <Link to={`/user/edit/${row.id}`} className="btn btn-sm btn-warning me-1" ><i className="fa fa-pencil">Edit</i></Link>
-                    <button type="button" className="btn btn-sm btn-danger me-1" onClick={() => handleDelete(row.id)}><i className="fa fa-trash"></i> Delete</button>
+                    <Link to={`/post/edit/${row.id}`} className="btn btn-sm btn-warning me-1" ><i className="fa fa-pencil"></i></Link>
+                    <button type="button" className="btn btn-sm btn-danger me-1" onClick={() => handleDelete(row.id)}><i className="fa fa-trash"></i> </button>
                 </>
             )
         }
@@ -144,7 +145,7 @@ const PostList = () => {
                         <li className="breadcrumb-item active">Tables</li>
                     </ol>
                     <div className='mb-3'>
-                        <Link className='btn btn-sm btn-success me-2' to='/user/add'><i className="fa fa-plus"></i> Add new </Link>
+                        <Link className='btn btn-sm btn-success me-2' to='/post/add'><i className="fa fa-plus"></i> Add new </Link>
                         {selectedRows.length > 0 && <button type='button' className='btn btn-sm btn-danger' onClick={handleMultiDelete}><i className="fa fa-trash"></i> Delete</button>}
                     </div>
                     <DataTable
