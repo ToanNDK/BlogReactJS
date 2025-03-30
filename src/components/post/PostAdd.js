@@ -7,6 +7,7 @@ import requestApi from "../../helpers/api";
 import { toast } from "react-toastify";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CustomUploadAdapter from "../../helpers/CustomUploadAdapter";
 
 const PostAdd = () => {
     const dispatch = useDispatch();
@@ -69,6 +70,13 @@ const PostAdd = () => {
         }
     }
 
+    function uploadPlugin(editor){
+        editor.plugins.get( 'FileRepository' ).createUploadAdapter = (loader)=>{
+            return new CustomUploadAdapter(loader);
+        };
+    }
+
+
     return (
         <div id="layoutSidenav_content">
             <main>
@@ -109,7 +117,8 @@ const PostAdd = () => {
                                                 editor={ClassicEditor}
                                                 data={editorData}
                                                 config={{
-                                                    licenseKey: "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDQ1ODg3OTksImp0aSI6IjBkZGM2MDc5LWVhMzAtNGMyMC1hMDhmLWQ0NDU2YmViYWE2ZSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjNiMjYwZTFmIn0.Bef3j0wYh7_HX8lok6rKwOJet7nA2qRwyFXWy3x1FvHardX-2cv9t2fBGJJqfHmk4LshVj1qcED6Vy0zrLWWjw"
+                                                    licenseKey: "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDQ1ODg3OTksImp0aSI6IjBkZGM2MDc5LWVhMzAtNGMyMC1hMDhmLWQ0NDU2YmViYWE2ZSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjNiMjYwZTFmIn0.Bef3j0wYh7_HX8lok6rKwOJet7nA2qRwyFXWy3x1FvHardX-2cv9t2fBGJJqfHmk4LshVj1qcED6Vy0zrLWWjw",
+                                                    extraPlugins:[uploadPlugin]
                                                 }}
                                                 onReady={editor => {
                                                     register('description', {required:'Description is required'})
