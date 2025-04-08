@@ -41,7 +41,7 @@ const PostList = () => {
         {
             name: "Thumbnail",
             element: row => {
-                const imageUrl = process.env.REACT_APP_API_URL + '/' + row.thumbnail.replace(/^uploads\//, '');
+                const imageUrl = process.env.REACT_APP_API_URL + '/' + row.thumbnail;
                 console.log("Image URL:", imageUrl); // Kiểm tra URL trong console
         
                 return (

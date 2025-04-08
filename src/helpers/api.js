@@ -3,9 +3,9 @@ import axios from 'axios'
 export default function requestApi(endpoint , method , body = [], responseType='json',contentType = 'application/json'){
     const headers = {
         "Accept" : "application/json",
-        "Content-Type": contentType,
-        "Access-Control-Allow-Origin":"*"
+        "Content-Type": contentType
     }
+    
 
     const instance = axios.create({headers});
 

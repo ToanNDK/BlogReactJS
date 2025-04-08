@@ -17,6 +17,7 @@ import Profile from './components/Profile';
 import PostList from './components/post/PostList';
 import PostAdd from './components/post/PostAdd';
 import PostUpdate from './components/post/PostUpdate';
+import OauthSuccess from './components/auth/OauthSuccess';
 function App() {
   return(
     <Routes>
@@ -41,6 +42,7 @@ function App() {
     <Route path='/register' element = {<Register/>}/>
       </Route>
     </Route>
+    <Route path='/oauth-success' element={<OauthSuccess />} />
     <Route path='*' element={<PageNotFound/>}/>
 
   </Routes>

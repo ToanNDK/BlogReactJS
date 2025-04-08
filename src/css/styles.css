@@ -11712,3 +11712,50 @@ body {
   background: #fff !important;
   border: 1px solid #ddd !important;
 }
+.login-background {
+  background-image: url('/public/assests/images/loginBG.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.custom-sidebar {
+  background: linear-gradient(to bottom, #1f1f2e, #141422);
+  font-size: 15px;
+}
+
+.custom-sidebar .nav-link {
+  padding: 12px 20px;
+  color: #c5c5d2;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-sidebar .nav-link:hover,
+.custom-sidebar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-left: 4px solid #0dcaf0;
+}
+
+.sb-sidenav-menu-heading {
+  color: #999;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 15px 20px 5px;
+}
+.card h5 {
+  margin-bottom: 0.5rem;
+}
+
+.card h2 {
+  font-weight: bold;
+}
+
+.card i {
+  opacity: 0.7;
+}
+
+.breadcrumb {
+  background: none;
+  padding-left: 0;
+}

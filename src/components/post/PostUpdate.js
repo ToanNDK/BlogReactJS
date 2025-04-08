@@ -22,16 +22,17 @@ const PostUpdate = () => {
         // data.description = editorData;
         console.log("data form", data);
         let formData = new FormData()
-        for (let key in data){  
-            if (key == 'thumbnail'){
-                
-                if (data.thumbnail[0] instanceof File){
-                    formData.append(key,data[key][0])
+        for (let key in data) {
+            if (key === 'thumbnail') {
+                if (data.thumbnail && data.thumbnail[0] instanceof File) {
+                    formData.append(key, data[key][0]);
+                } else if (postData.thumbnail) {
+                    // Gửi lại thumbnail cũ (tách phần domain nếu server lưu path tương đối)
+                    const thumbnailPath = postData.thumbnail.replace(`${process.env.REACT_APP_API_URL}/`, '');
+                    formData.append(key, thumbnailPath);
                 }
-            }
-            else {
-                formData.append(key,data[key])
- 
+            } else {
+                formData.append(key, data[key]);
             }
         }
         dispatch(actions.controlLoading(true));

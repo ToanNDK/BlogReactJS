@@ -1,37 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import requestApi from '../helpers/api';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as actions from '../redux/actions';
+
 const Dashboard = () => {
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const [dashboardData, setDashboardData] = useState({});
 
     useEffect(() => {
-        // requestApi('/users', 'GET', []).then(response => {
-        //     console.log(response)
-        //     setDashboardData({
-        //         ...dashboardData, totalUser: response.data.total
-        //     })
-        // }).catch(err => {
-        //     console.log(err)
-        // })
-        const promiseUser = requestApi('/users','GET')
-        const promisePost = requestApi('/posts','GET')
+        const promiseUser = requestApi('/users', 'GET');
+        const promisePost = requestApi('/posts', 'GET');
         dispatch(actions.controlLoading(true));
-        Promise.all([promiseUser,promisePost]).then((res)=>{
-            console.log('res=>',res);
-            setDashboardData({
-                ...dashboardData,totalUser: res[0].data.total, totalPost:res[1].data.total
-        });
-            dispatch(actions.controlLoading(false));
-
-        }).catch(error =>{
-            console.log("error=>", error);
-            dispatch(actions.controlLoading(false));
-
-        })
-    }, [])
+        Promise.all([promiseUser, promisePost])
+            .then((res) => {
+                setDashboardData({
+                    totalUser: res[0].data.total,
+                    totalPost: res[1].data.total,
+                });
+                dispatch(actions.controlLoading(false));
+            })
+            .catch((error) => {
+                console.log("error=>", error);
+                dispatch(actions.controlLoading(false));
+            });
+    }, []);
 
     return (
         <div id="layoutSidenav_content">
@@ -39,62 +32,50 @@ const Dashboard = () => {
                 <div className="container-fluid px-4">
                     <h1 className="mt-4">Dashboard</h1>
                     <ol className="breadcrumb mb-4">
-                        <li className="breadcrumb-item active">Dashboard</li>
+                        <li className="breadcrumb-item active">Overview of your system</li>
                     </ol>
-                    <div className="row">
-                        <div className="col-xl-3 col-md-6">
-                            <div className="card bg-primary text-white mb-4">
-                                <div className="card-body">Total Users
-                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {dashboardData.totalUser}
-                                    </span>
 
-                                </div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                <Link to='/users' className="small text-white stretched-link">View Details</Link>
-                                <div className="small text-white"><i className="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="row g-4">
                         <div className="col-xl-3 col-md-6">
-                            <div className="card bg-warning text-white mb-4">
-                                <div className="card-body">
-                                    Total Posts
-                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {dashboardData.totalPost}
-                                    </span>
+                            <div className="card text-white bg-primary h-100 position-relative overflow-hidden">
+                                <div className="card-body d-flex flex-column justify-content-center">
+                                    <h5>Total Users</h5>
+                                    <h2>{dashboardData.totalUser || 0}</h2>
                                 </div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="#">View Details</a>
-                                    <Link to='/posts' className="small text-white stretched-link">View Details</Link>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                                <div className="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center">
+                                    <Link to="/users" className="text-white stretched-link">View Details</Link>
+                                    <i className="fas fa-users fs-4"></i>
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="col-xl-3 col-md-6">
-                            <div className="card bg-success text-white mb-4">
-                                <div className="card-body">Success Card</div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="#">View Details</a>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div className="col-xl-3 col-md-6">
-                            <div className="card bg-danger text-white mb-4">
-                                <div className="card-body">Danger Card</div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="#">View Details</a>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                            <div className="card text-white bg-warning h-100 position-relative overflow-hidden">
+                                <div className="card-body d-flex flex-column justify-content-center">
+                                    <h5>Total Posts</h5>
+                                    <h2>{dashboardData.totalPost || 0}</h2>
+                                </div>
+                                <div className="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center">
+                                    <Link to="/posts" className="text-white stretched-link">View Details</Link>
+                                    <i className="fas fa-file-alt fs-4"></i>
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
 
+                    {/* Thêm phần này nếu bạn muốn biểu đồ, hoặc widget khác */}
+                    {/* <div className="row mt-4">
+                        <div className="col">
+                            <div className="card">
+                                <div className="card-header">Analytics (Coming soon)</div>
+                                <div className="card-body">Chart or stats here</div>
+                            </div>
+                        </div>
+                    </div> */}
                 </div>
             </main>
         </div>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;

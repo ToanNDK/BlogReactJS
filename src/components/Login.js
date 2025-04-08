@@ -4,6 +4,8 @@ import requestApi from '../helpers/api';
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux';
 import * as actions from '../redux/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -81,7 +83,7 @@ const Login = () => {
     }
 
     return (
-        <div id="layoutAuthentication" className='bg-primary'>
+        <div id="layoutAuthentication" className='login-background'>
             <div id="layoutAuthentication_content">
                 <main>
                     <div className="container">
@@ -107,6 +109,24 @@ const Login = () => {
                                             </div>
                                         </form>
                                     </div>
+                                    <div className="card-body d-flex flex-column gap-2">
+  <a
+    href="http://localhost:5000/auth/google"
+    className="btn btn-danger d-flex align-items-center justify-content-center gap-2"
+  >
+    <FontAwesomeIcon icon={faGoogle} />
+    Login with Google
+  </a>
+
+  <a
+    href="http://localhost:5000/auth/github"
+    className="btn btn-dark d-flex align-items-center justify-content-center gap-2"
+  >
+    <FontAwesomeIcon icon={faGithub} />
+    Login with GitHub
+  </a>
+</div>
+
                                     <div className="card-footer text-center py-3">
                                         <div className="small">
                                             <Link to='/register'>Need an account? Sign up!</Link>
