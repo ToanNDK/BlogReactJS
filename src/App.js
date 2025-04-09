@@ -18,6 +18,8 @@ import PostList from './components/post/PostList';
 import PostAdd from './components/post/PostAdd';
 import PostUpdate from './components/post/PostUpdate';
 import OauthSuccess from './components/auth/OauthSuccess';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 function App() {
   return(
     <Routes>

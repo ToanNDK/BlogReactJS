@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+}
