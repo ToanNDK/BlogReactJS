@@ -11,13 +11,13 @@ const Sidebar = () => {
             <nav className="sb-sidenav accordion sb-sidenav-dark custom-sidebar" id="sidenavAccordion">
                 <div className="sb-sidenav-menu">
                     <div className="nav">
-                        <div className="sb-sidenav-menu-heading">Core</div>
+                        <div className="sb-sidenav-menu-heading">Home</div>
                         <Link to="/" className={`nav-link ${isActive('/') && 'active'}`}>
                             <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Trang chủ
                         </Link>
 
-                        <div className="sb-sidenav-menu-heading">Interface</div>
+                        <div className="sb-sidenav-menu-heading">Chức năng</div>
 
                         {/* Users */}
                         <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false">
